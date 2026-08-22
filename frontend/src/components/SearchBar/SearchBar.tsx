@@ -23,7 +23,7 @@ export default function SearchBar({ placeholder = "Search..." }: { placeholder?:
       }
       
       startTransition(() => {
-        router.replace(`${pathname}?${params.toString()}`);
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
       });
     }, 300); // 300ms debounce
 
