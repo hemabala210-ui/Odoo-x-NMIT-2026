@@ -1,190 +1,238 @@
 .container {
+  padding: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.backBtn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+}
+
+.backBtn:hover {
+  color: var(--text-primary);
+}
+
+.dossierGrid {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 24px;
+}
+
+/* IDENTITY COLUMN */
+.identityCol {
   display: flex;
   flex-direction: column;
-  gap: 48px;
-  max-width: 800px;
+  gap: 24px;
 }
 
 .identityCard {
-  background: var(--color-surface);
-  border: var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 32px;
+  padding: 32px 24px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-}
-
-.idHeader {
-  display: flex;
   align-items: center;
-  gap: 20px;
+  text-align: center;
 }
 
 .avatar {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: var(--color-mint);
-  color: var(--color-background);
-  font-family: var(--font-sora);
-  font-size: 24px;
-  font-weight: 600;
+  width: 80px;
+  height: 80px;
+  background: var(--surface-base);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.profileInfo {
-  flex: 1;
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--text-primary);
+  margin-bottom: 24px;
 }
 
 .name {
-  font-family: var(--font-sora);
-  font-weight: 600;
   font-size: 24px;
-  color: var(--color-text-primary);
-  letter-spacing: 0.5px;
+  margin-bottom: 4px;
 }
 
 .role {
-  font-family: var(--font-inter);
+  color: var(--text-secondary);
   font-size: 14px;
-  color: var(--color-text-secondary);
+  margin-bottom: 24px;
 }
 
-.empCode {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  color: var(--color-text-secondary);
-  background: var(--color-elevated);
-  padding: 6px 12px;
-  border-radius: var(--radius-sm);
-  border: var(--border-subtle);
-}
-
-.idFooter {
-  padding-bottom: 24px;
-  border-bottom: var(--border-subtle);
-}
-
-.dept {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--color-text-secondary);
-  letter-spacing: 1px;
-}
-
-.metrics {
-  display: flex;
-  gap: 48px;
-}
-
-.metric {
+.metaList {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 16px;
+  text-align: left;
 }
 
-.metricLabel {
+.metaItem {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 8px;
+}
+
+.metaLabel {
   font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--color-text-secondary);
+  font-size: 10px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+}
+
+.metaValue {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-primary);
+}
+
+/* METRICS */
+.metricCard {
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .metricValue {
-  font-family: var(--font-sora);
-  font-weight: 600;
-  font-size: 24px;
-  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  font-size: 32px;
+  line-height: 1;
 }
 
-/* Timeline Styles */
-.timelineContainer {
+/* TIMELINE COLUMN */
+.timelineCol {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.timelineTitle {
-  font-family: var(--font-sora);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--color-text-secondary);
-  letter-spacing: 1px;
+.timelineCard {
+  padding: 32px;
+  flex-grow: 1;
 }
 
-.timeline {
+.sectionTitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.1em;
+  margin-bottom: 32px;
+  text-transform: uppercase;
+}
+
+.horizontalTimeline {
+  position: relative;
   display: flex;
   flex-direction: column;
+  gap: 32px;
+}
+
+.horizontalTimeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 100px;
+  bottom: 0;
+  width: 1px;
+  background: var(--border-subtle);
 }
 
 .timelineEvent {
   display: flex;
   gap: 32px;
   position: relative;
-  padding-bottom: 32px;
 }
 
-.timelineEvent:not(:last-child)::before {
-  content: '';
-  position: absolute;
-  left: 104px;
-  top: 24px;
-  bottom: 0;
-  width: 1px;
-  background: var(--border-subtle);
-}
-
-.dateLabel {
-  width: 80px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--color-text-secondary);
+.dateCol {
+  width: 68px;
   text-align: right;
-  padding-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  padding-top: 4px;
 }
+
+.eventMarker {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--surface-base);
+  border: 2px solid var(--border-focus);
+  position: absolute;
+  left: 96px;
+  top: 6px;
+}
+
+.markerAttendance { border-color: var(--status-success); }
+.markerLeave { border-color: var(--status-warning); }
+.markerPayroll { border-color: var(--accent-secondary); }
 
 .eventContent {
-  display: flex;
-  gap: 16px;
+  flex: 1;
+  background: var(--surface-base);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 16px 20px;
 }
 
-.eventIcon {
-  width: 24px;
-  height: 24px;
-  background: var(--color-surface);
-  border: var(--border-subtle);
-  border-radius: 50%;
+.eventHeader {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  z-index: 1;
-}
-
-.eventDetails {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  justify-content: space-between;
+  margin-bottom: 8px;
 }
 
 .eventTitle {
-  font-family: var(--font-inter);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
-  color: var(--color-text-primary);
+  color: var(--text-primary);
+}
+
+.eventType {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-tertiary);
+  border: 1px solid var(--border-subtle);
+  padding: 2px 6px;
+  border-radius: 2px;
 }
 
 .eventDesc {
-  font-family: var(--font-inter);
-  font-size: 14px;
-  color: var(--color-text-secondary);
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
 }
 
-.eventStatus {
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.quickAction {
+  padding: 8px 16px;
+  background: var(--surface-base);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  color: var(--text-secondary);
   font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--color-yellow);
-  margin-top: 4px;
+  font-size: 11px;
+  transition: all 0.2s;
+}
+
+.quickAction:hover {
+  background: var(--surface-raised);
+  color: var(--text-primary);
+  border-color: var(--border-focus);
 }

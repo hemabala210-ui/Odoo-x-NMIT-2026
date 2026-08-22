@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ◈ DAYFLOW: Spatial Human Operations Command System
 
-## Getting Started
+Dayflow is a modern, responsive, and robust Human Resources Management System designed not as a typical administrative dashboard, but as a high-performance **Human Operations Command System**. It transitions away from generic SaaS interfaces to a "Spatial UI" driven by dark graphite aesthetics, sparse neon cues, and real-time operational signals.
 
-First, run the development server:
+## Core Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Intelligence Center**: Organization Pulse, Attention Stream, and AI-driven Dayflow Analysis to highlight operational anomalies.
+- **People Directory & Identity Dossier**: Spatial bento-grid directory with "Flow Signals" indicating active status. In-depth employee profiles feature horizontal activity timelines spanning join dates, attendance, leave, and payroll events.
+- **Attendance Workflows**: Granular views including Daily metrics and a spatial 14-day Heatmap showing operational consistency.
+- **Leave Pipeline**: Interactive Kanban-style workflow (Requested → Approved/Rejected → Resolved) built with Next.js Server Actions.
+- **Precision Payroll**: High-contrast, easy-to-read grids tracking gross salaries, deductions, and net pay. Dedicated spatial payslips designed for print logic.
+- **Progressive Settings**: A modernized configuration panel leveraging progressive disclosure via URL parameters for a clean, non-scrolling experience.
+- **Global Command Palette**: Instant access to any organizational domain via `CMD+K`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework**: Next.js 15 (App Router, Server Components, Server Actions)
+- **Styling**: Vanilla CSS (CSS Modules) utilizing Spatial Design Tokens
+- **Database**: PostgreSQL
+- **ORM**: Prisma
+- **Typography**: Space Grotesk (Headers), Inter (Body), IBM Plex Mono (Data/Monospaced elements)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Architecture
 
-## Learn More
+Dayflow utilizes a deeply integrated database-first approach. All components read dynamically from the Prisma PostgreSQL database ensuring high integrity and deterministic data flow instead of mock API stubs.
 
-To learn more about Next.js, take a look at the following resources:
+## Setup Instructions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Install dependencies across the monorepo (if applicable) or root:
+   ```bash
+   cd frontend
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Configure environment variables in `frontend/.env` pointing to your database instance:
+   ```env
+   DATABASE_URL="postgresql://user:password@localhost:5432/dayflow?schema=public"
+   ```
 
-## Deploy on Vercel
+3. Synchronize database schema and seed data (ensure you are running a PostgreSQL instance):
+   ```bash
+   cd database
+   npx prisma db push
+   node seed.js
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Run the development server:
+   ```bash
+   cd frontend
+   npm run dev
+   ```
+   Navigate to `http://localhost:3000`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Design Language
+
+Dayflow embraces **Spatial Operations**:
+- **Background**: Deep Graphite (`var(--bg-color)`).
+- **Surface Panels**: Slightly raised, border-driven panels (`spatial-panel`, `spatial-panel-raised`).
+- **Accents**: Electric Cyan (`var(--accent-primary)`) and Hyper Red (`var(--status-critical)`).
+- **Flow Signals**: Colored dots indicating state context, minimizing text-heavy table reads.

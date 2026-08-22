@@ -30,6 +30,7 @@ yarn-error.log*
 # database
 dev.db
 dev.db-journal
+/frontend/src/generated/prisma/
 
 # AI and IDE
 .claude/

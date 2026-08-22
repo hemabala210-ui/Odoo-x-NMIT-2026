@@ -29,7 +29,7 @@ export default async function FlowPage({
 
       <div className={styles.splitLayout}>
         {/* Left Column: Feed */}
-        <div className={styles.feedColumn}>
+        <div className={`neo-panel ${styles.feedColumn}`}>
           <h2 className={styles.sectionTitle}>DETECTED ANOMALIES</h2>
           
           <div className={styles.anomalyList}>
@@ -64,7 +64,7 @@ export default async function FlowPage({
         {/* Right Column: "WHY?" Explainability */}
         <div className={styles.detailColumn}>
           {activeAnomaly ? (
-            <div className={styles.explainCard}>
+            <div className={`neo-panel ${styles.explainCard}`}>
               <div className={styles.explainHeader}>
                 <span className={styles.explainBadge}>AI ANALYSIS</span>
                 <h3 className={styles.explainTitle}>Why was this flagged?</h3>

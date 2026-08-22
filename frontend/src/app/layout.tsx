@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Sora, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Space_Grotesk, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const sora = Sora({
-  variable: "--font-sora",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-sora", // keeping variable name to avoid huge refactor
   subsets: ["latin"],
 });
 
@@ -18,8 +18,10 @@ const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
 });
 
+import CommandPalette from "@/components/CommandPalette/CommandPalette";
+
 export const metadata: Metadata = {
-  title: "Dayflow HRMS",
+  title: "DAYFLOW | Human Operations",
   description: "Event → Context → Intelligence → Action → Audit",
 };
 
@@ -29,8 +31,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sora.variable} ${inter.variable} ${plexMono.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${plexMono.variable}`}>
+      <body>
+        {children}
+        <CommandPalette />
+      </body>
     </html>
   );
 }

@@ -1,0 +1,180 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-color);
+  padding: 40px 20px;
+}
+
+.authCard {
+  width: 100%;
+  max-width: 480px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.logo {
+  font-family: var(--font-sora);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  letter-spacing: 2px;
+}
+
+.brandMark {
+  color: var(--accent-primary);
+  font-size: 28px;
+  text-shadow: 2px 2px 4px rgba(163, 177, 198, 0.6);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.uploadGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.uploadBtn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: 2px 2px 8px rgba(45, 91, 255, 0.3);
+  cursor: pointer;
+}
+
+.uploadText {
+  font-family: var(--font-inter);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.inputGroup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.label {
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  flex: 0 0 120px;
+}
+
+.input {
+  background: var(--bg-color);
+  box-shadow: var(--neo-shadow-in);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: var(--font-inter);
+  font-size: 14px;
+  color: var(--text-primary);
+  outline: none;
+  flex: 1;
+}
+
+.input:focus {
+  box-shadow: var(--neo-shadow-in-deep);
+}
+
+.generatedIdBox {
+  margin-top: 8px;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--bg-color);
+  box-shadow: var(--neo-shadow-in);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.idLabel {
+  font-family: var(--font-inter);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.idValue {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent-primary);
+  letter-spacing: 2px;
+}
+
+.idHint {
+  font-family: var(--font-inter);
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.submitBtn {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  background: var(--accent-gradient);
+  color: white;
+  box-shadow: 4px 4px 10px rgba(45, 91, 255, 0.3), -4px -4px 10px rgba(255, 255, 255, 0.5);
+  transition: all 0.2s ease;
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 12px rgba(45, 91, 255, 0.4), -6px -6px 12px rgba(255, 255, 255, 0.6);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-inter);
+  font-size: 14px;
+}
+
+.footerText {
+  color: var(--text-secondary);
+}
+
+.footerLink {
+  color: var(--accent-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footerLink:hover {
+  text-decoration: underline;
+}

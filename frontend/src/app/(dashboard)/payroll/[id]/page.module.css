@@ -1,0 +1,208 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px;
+  padding-bottom: 80px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.backButton {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.backButton:hover {
+  color: var(--text-primary);
+}
+
+.btnPrint {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-primary);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-subtle);
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnPrint:hover {
+  background: var(--accent-glow);
+  border-color: var(--accent-secondary);
+  color: var(--accent-secondary);
+}
+
+.payslipDocument {
+  padding: 48px;
+}
+
+.companyHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 1px;
+}
+
+.brandMark {
+  color: var(--accent-secondary);
+}
+
+.payslipTitle {
+  text-align: right;
+}
+
+.payslipTitle h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.payslipTitle p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.employeeDetails {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 40px;
+  margin-bottom: 40px;
+  background: var(--surface-base);
+  border: 1px solid var(--border-subtle);
+  padding: 24px;
+  border-radius: 4px;
+}
+
+.detailGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detailLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+}
+
+.detailValue {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.salaryTables {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+.sectionTitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table td {
+  padding: 12px 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.table .amount {
+  text-align: right;
+  color: var(--text-primary);
+}
+
+.totalRow td {
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  border-top: 1px dashed var(--border-subtle);
+  padding-top: 16px;
+}
+
+.netPaySection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface-raised);
+  padding: 24px 32px;
+  border-radius: 4px;
+  border: 1px solid var(--border-focus);
+  margin-bottom: 40px;
+}
+
+.netPayLabel {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-primary);
+  letter-spacing: 0.1em;
+}
+
+.netPayValue {
+  font-family: var(--font-display);
+  font-size: 32px;
+  color: var(--text-primary);
+}
+
+.footer {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-tertiary);
+  padding-top: 24px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+@media print {
+  .header { display: none; }
+  .payslipDocument { padding: 0; background: white; color: black; border: none; }
+  .logo, .payslipTitle h2, .payslipTitle p, .detailLabel, .detailValue, .sectionTitle, .table td, .table .amount, .netPayLabel, .netPayValue, .footer {
+    color: black;
+  }
+  .employeeDetails, .netPaySection {
+    background: white;
+    border: 1px solid #ccc;
+  }
+}

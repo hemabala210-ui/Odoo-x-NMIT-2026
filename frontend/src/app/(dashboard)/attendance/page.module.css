@@ -1,0 +1,221 @@
+.container {
+  padding: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 24px;
+}
+
+.pageTitle {
+  font-size: 32px;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.controlsRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.viewToggles {
+  display: flex;
+  gap: 8px;
+  background: var(--surface-base);
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid var(--border-subtle);
+}
+
+.viewBtn {
+  padding: 6px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 2px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.viewBtn:hover {
+  color: var(--text-primary);
+}
+
+.viewBtnActive {
+  background: var(--surface-raised);
+  color: var(--text-primary);
+  border: 1px solid var(--border-focus);
+}
+
+.dateControls {
+  display: flex;
+  gap: 8px;
+}
+
+.btnControl {
+  padding: 8px 12px;
+  background: var(--surface-base);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.btnControl:hover {
+  background: var(--surface-raised);
+  color: var(--text-primary);
+}
+
+/* DATA TABLE */
+.tableContainer {
+  overflow: hidden;
+}
+
+.tableHeaderSection {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--surface-raised);
+}
+
+.currentDateLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent-secondary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 16px 24px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.table th {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: normal;
+}
+
+.table tr:hover td {
+  background: var(--surface-raised);
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.nameCol {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+.monoTime {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* HEATMAP VIEW */
+.heatmapGrid {
+  display: grid;
+  grid-template-columns: 200px repeat(14, 1fr);
+  gap: 2px;
+  padding: 24px;
+  overflow-x: auto;
+}
+
+.heatmapHeader {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-tertiary);
+  text-align: center;
+  padding-bottom: 8px;
+}
+
+.heatmapRowLabel {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+}
+
+.heatmapCell {
+  aspect-ratio: 1;
+  border-radius: 2px;
+  background: var(--surface-base);
+  border: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+.heatmapCell.present { background: rgba(0, 255, 157, 0.2); border-color: rgba(0, 255, 157, 0.4); }
+.heatmapCell.leave { background: rgba(255, 184, 0, 0.2); border-color: rgba(255, 184, 0, 0.4); }
+.heatmapCell.missing { background: rgba(255, 51, 102, 0.1); border-color: rgba(255, 51, 102, 0.2); }
+
+.heatmapCell:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-focus);
+  padding: 4px 8px;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  z-index: 10;
+  margin-bottom: 4px;
+}
+
+.emptyState {
+  padding: 64px 20px;
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 14px;
+}

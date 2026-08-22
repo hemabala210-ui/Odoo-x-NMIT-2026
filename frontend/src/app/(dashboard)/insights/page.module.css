@@ -1,0 +1,148 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  height: calc(100vh - 80px);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.pageTitle {
+  font-family: var(--font-sora);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.subtitle {
+  font-family: var(--font-inter);
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.insightsGrid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 32px;
+}
+
+.metricCard {
+  grid-column: span 4;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.metricIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--bg-color);
+  box-shadow: var(--neo-shadow-out);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--accent-primary);
+}
+
+.metricValue {
+  font-family: var(--font-sora);
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.metricLabel {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+}
+
+.listCard {
+  grid-column: span 6;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cardTitle {
+  font-family: var(--font-sora);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cardTitle::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: rgba(163, 177, 198, 0.2);
+  box-shadow: inset 1px 1px 2px rgba(163, 177, 198, 0.4), inset -1px -1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.pulseList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pulseItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: var(--neo-shadow-in);
+  background: var(--bg-color);
+}
+
+.pulseEmp {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.empName {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-primary);
+}
+
+.pulseDate {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.pulseMood {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  box-shadow: var(--neo-shadow-out);
+  color: var(--accent-active);
+}
+
+@media (max-width: 1024px) {
+  .metricCard { grid-column: span 12; }
+  .listCard { grid-column: span 12; }
+}

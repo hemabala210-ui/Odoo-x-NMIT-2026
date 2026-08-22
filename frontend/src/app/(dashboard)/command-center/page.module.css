@@ -1,140 +1,211 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
+  padding: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.heroTitle {
-  font-family: var(--font-sora);
-  font-weight: 600;
+.header {
+  margin-bottom: 40px;
+}
+
+.pageTitle {
   font-size: 32px;
-  color: var(--color-text-primary);
   margin-bottom: 8px;
+  color: var(--text-primary);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
 }
 
 .subtitle {
-  font-family: var(--font-inter);
+  color: var(--text-secondary);
   font-size: 14px;
-  color: var(--color-text-secondary);
 }
 
-.statsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
+/* ORGANIZATION PULSE */
+.pulseSection {
+  margin-bottom: 40px;
 }
 
-.statCard {
-  background: var(--color-surface);
-  border: var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 24px;
+.sectionHeader {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.statValue {
-  font-family: var(--font-mono);
-  font-size: 36px;
-  color: var(--color-mint);
-}
-
-.statLabel {
-  font-family: var(--font-inter);
-  font-size: 14px;
-  color: var(--color-text-secondary);
-  font-weight: 500;
-}
-
-.attentionSection {
-  margin-top: 24px;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
 .sectionTitle {
-  font-family: var(--font-sora);
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--color-coral);
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-.attentionList {
+.metricsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.metricCard {
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
-.attentionItem {
-  background: var(--color-surface);
-  border: var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 16px 24px;
+.metricHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.attentionDetails {
+.metricLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+
+.metricValue {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* INTELLIGENCE & STREAM */
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 24px;
+}
+
+/* AI INSIGHT */
+.insightCard {
+  padding: 32px;
+  border-left: 2px solid var(--accent-secondary);
+  background: linear-gradient(90deg, rgba(0, 240, 255, 0.03) 0%, transparent 100%);
+}
+
+.insightHeader {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  margin-bottom: 24px;
 }
 
-.indicator {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+.insightTag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent-secondary);
+  border: 1px solid var(--accent-secondary);
+  padding: 4px 8px;
+  border-radius: 2px;
+  letter-spacing: 0.1em;
 }
 
-.indicator.red { background: var(--color-coral); }
-.indicator.yellow { background: var(--color-yellow); }
-.indicator.blue { background: var(--color-blue); }
-
-.employeeName {
-  font-family: var(--font-sora);
-  font-weight: 600;
-  font-size: 16px;
-  color: var(--color-text-primary);
+.insightStatement {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--text-primary);
+  margin-bottom: 32px;
+  max-width: 80%;
 }
 
-.issueDesc {
-  font-family: var(--font-inter);
-  font-size: 14px;
-  color: var(--color-text-secondary);
+.insightGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
-.actions {
+.insightBlock {
   display: flex;
+  flex-direction: column;
   gap: 8px;
 }
 
-.btn {
-  background: var(--color-elevated);
-  border: var(--border-subtle);
-  color: var(--color-text-primary);
-  padding: 8px 16px;
-  border-radius: var(--radius-sm);
-  font-size: 13px;
+.insightLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.1em;
+}
+
+.insightValue {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.insightAction {
+  color: var(--text-primary);
   font-weight: 500;
-  transition: all 0.2s ease;
 }
 
-.btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+/* ATTENTION STREAM */
+.streamList {
+  display: flex;
+  flex-direction: column;
 }
 
-.btnPrimary {
-  background: var(--color-mint);
-  color: var(--color-background);
-  border: none;
+.streamItem {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 16px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  align-items: center;
 }
 
-.btnPrimary:hover {
-  background: #4ac7a8; /* darker mint */
+.streamItem:last-child {
+  border-bottom: none;
+}
+
+.streamTime {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-tertiary);
+  width: 45px;
+}
+
+.streamContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.streamTitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.streamDesc {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.streamAction {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent-secondary);
+  border: 1px solid var(--accent-secondary);
+  padding: 6px 12px;
+  border-radius: 2px;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.streamAction:hover {
+  background: var(--accent-glow);
+}
+
+.emptyState {
+  padding: 40px;
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 14px;
 }

@@ -11,9 +11,10 @@ services:
     command: npm run dev:backend
     volumes:
       - ./backend/src:/app/backend/src
-      - /app/node_modules
     networks:
       - dayflow_network
+    extra_hosts:
+      - "aws-0-ap-northeast-1.pooler.supabase.com:54.64.190.72"
 
   frontend:
     build: .
@@ -24,14 +25,18 @@ services:
       - .env
     environment:
       - NEXT_PUBLIC_API_URL=http://backend:4000/api
-    command: npm run dev:frontend
+    command: >
+      sh -c "node frontend/node_modules/prisma/build/index.js generate --schema=database/prisma/schema.prisma &&
+      npm run dev:frontend"
     volumes:
       - ./frontend/src:/app/frontend/src
-      - /app/node_modules
+      - ./database/prisma:/app/database/prisma
     depends_on:
       - backend
     networks:
       - dayflow_network
+    extra_hosts:
+      - "aws-0-ap-northeast-1.pooler.supabase.com:54.64.190.72"
 
 networks:
   dayflow_network:

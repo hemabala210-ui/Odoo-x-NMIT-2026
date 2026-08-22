@@ -15,14 +15,14 @@
   font-family: var(--font-sora);
   font-size: 24px;
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--text-primary);
   letter-spacing: 0.5px;
 }
 
 .subtitle {
   font-family: var(--font-inter);
   font-size: 14px;
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
 }
 
 .splitLayout {
@@ -37,9 +37,6 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background: var(--color-surface);
-  border: var(--border-subtle);
-  border-radius: var(--radius-lg);
   padding: 24px;
   overflow-y: auto;
 }
@@ -48,14 +45,14 @@
   font-family: var(--font-sora);
   font-size: 14px;
   font-weight: 600;
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
   letter-spacing: 1px;
 }
 
 .anomalyList {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
 }
 
 .anomalyItem {
@@ -63,20 +60,25 @@
   flex-direction: column;
   gap: 6px;
   padding: 16px;
-  background: var(--color-elevated);
-  border: var(--border-subtle);
-  border-radius: var(--radius-md);
+  border-radius: 12px;
   text-decoration: none;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+  background: var(--bg-color);
+  box-shadow: var(--neo-shadow-out);
 }
 
 .anomalyItem:hover {
-  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+  box-shadow: var(--neo-shadow-out-hover);
 }
 
 .activeItem {
-  border-color: var(--color-coral);
-  background: rgba(255, 128, 102, 0.05);
+  box-shadow: var(--neo-shadow-in);
+}
+
+.activeItem:hover {
+  transform: none;
+  box-shadow: var(--neo-shadow-in-deep);
 }
 
 .itemHeader {
@@ -89,19 +91,19 @@
   font-family: var(--font-inter);
   font-weight: 600;
   font-size: 14px;
-  color: var(--color-text-primary);
+  color: var(--text-primary);
 }
 
 .itemTime {
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
 }
 
 .itemDesc {
   font-family: var(--font-inter);
   font-size: 13px;
-  color: var(--color-coral);
+  color: var(--accent-attention);
 }
 
 .detailColumn {
@@ -110,9 +112,6 @@
 }
 
 .explainCard {
-  background: var(--color-surface);
-  border: var(--border-subtle);
-  border-radius: var(--radius-lg);
   padding: 40px;
   display: flex;
   flex-direction: column;
@@ -128,21 +127,22 @@
 
 .explainBadge {
   align-self: flex-start;
-  background: var(--color-elevated);
-  color: var(--color-mint);
+  color: var(--accent-primary);
+  background: var(--bg-color);
+  box-shadow: var(--neo-shadow-in);
   font-family: var(--font-mono);
   font-size: 11px;
-  padding: 4px 8px;
-  border-radius: var(--radius-sm);
-  border: var(--border-subtle);
+  padding: 6px 12px;
+  border-radius: 8px;
   letter-spacing: 1px;
+  font-weight: 600;
 }
 
 .explainTitle {
   font-family: var(--font-sora);
   font-size: 24px;
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--text-primary);
 }
 
 .factList {
@@ -161,14 +161,15 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--color-mint);
+  background: var(--accent-primary);
   margin-top: 8px;
+  box-shadow: 2px 2px 4px rgba(45, 91, 255, 0.4);
 }
 
 .factContent {
   font-family: var(--font-inter);
   font-size: 15px;
-  color: var(--color-text-primary);
+  color: var(--text-primary);
   line-height: 1.5;
 }
 
@@ -177,62 +178,71 @@
 }
 
 .highlight {
-  color: var(--color-coral);
+  color: var(--accent-attention);
   font-weight: 600;
 }
 
 .contextBox {
-  background: rgba(255, 255, 255, 0.02);
-  border-left: 3px solid var(--color-mint);
-  padding: 16px 20px;
+  padding: 20px;
   font-family: var(--font-inter);
   font-size: 14px;
-  color: var(--color-text-secondary);
-  line-height: 1.5;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  border-radius: 12px;
+  background: var(--bg-color);
+  box-shadow: var(--neo-shadow-in);
+  border-left: 4px solid var(--accent-primary);
 }
 
 .contextLabel {
   font-family: var(--font-mono);
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--text-primary);
   margin-right: 8px;
 }
 
 .actions {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   margin-top: auto;
 }
 
 .btnPrimary, .btnSecondary {
   padding: 12px 24px;
-  border-radius: var(--radius-sm);
+  border-radius: 12px;
   font-family: var(--font-inter);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 14px;
   border: none;
   cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.btnPrimary:hover, .btnSecondary:hover {
-  opacity: 0.9;
+  transition: all 0.2s ease;
 }
 
 .btnPrimary {
-  background: var(--color-mint);
-  color: var(--color-background);
+  background: var(--accent-gradient);
+  color: white;
+  box-shadow: 4px 4px 10px rgba(45, 91, 255, 0.3), -4px -4px 10px rgba(255, 255, 255, 0.5);
+}
+
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 12px rgba(45, 91, 255, 0.4), -6px -6px 12px rgba(255, 255, 255, 0.6);
 }
 
 .btnSecondary {
-  background: var(--color-elevated);
-  color: var(--color-text-primary);
-  border: var(--border-subtle);
+  background: var(--bg-color);
+  color: var(--text-primary);
+  box-shadow: var(--neo-shadow-out);
+}
+
+.btnSecondary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--neo-shadow-out-hover);
 }
 
 .emptyDetail {
   margin: auto;
   font-family: var(--font-inter);
   font-size: 14px;
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
 }
