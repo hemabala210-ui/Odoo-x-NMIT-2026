@@ -144,3 +144,28 @@ CREATE TABLE "AnomalyFlag" (
 -- Create Indexes
 CREATE INDEX "User_email_idx" ON "User"("email");
 CREATE INDEX "Employee_employeeCode_idx" ON "Employee"("employeeCode");
+
+-- ==========================================
+-- SUPABASE AUTH INTEGRATION
+-- ==========================================
+-- Automatically mirror new signups from auth.users to our public."User" table
+
+CREATE OR REPLACE FUNCTION public.handle_new_user() 
+RETURNS trigger AS $$
+BEGIN
+  INSERT INTO public."User" (id, email, name, "passwordHash", role)
+  VALUES (
+    new.id::text, 
+    new.email,
+    COALESCE(new.raw_user_meta_data->>'full_name', new.email),
+    'supabase-auth-managed', -- Handled by Supabase Auth internally
+    'EMPLOYEE'               -- Default role assigned to new signups
+  );
+  RETURN new;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Trigger the function every time a user is created
+CREATE OR REPLACE TRIGGER on_auth_user_created
+  AFTER INSERT ON auth.users
+  FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
