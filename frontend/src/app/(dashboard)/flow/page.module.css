@@ -1,0 +1,238 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  height: calc(100vh - 80px);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pageTitle {
+  font-family: var(--font-sora);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: 0.5px;
+}
+
+.subtitle {
+  font-family: var(--font-inter);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.splitLayout {
+  display: flex;
+  gap: 32px;
+  flex: 1;
+  min-height: 0;
+}
+
+.feedColumn {
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--color-surface);
+  border: var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.sectionTitle {
+  font-family: var(--font-sora);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  letter-spacing: 1px;
+}
+
+.anomalyList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.anomalyItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px;
+  background: var(--color-elevated);
+  border: var(--border-subtle);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.anomalyItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.activeItem {
+  border-color: var(--color-coral);
+  background: rgba(255, 128, 102, 0.05);
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.itemEmp {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text-primary);
+}
+
+.itemTime {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.itemDesc {
+  font-family: var(--font-inter);
+  font-size: 13px;
+  color: var(--color-coral);
+}
+
+.detailColumn {
+  flex: 1;
+  display: flex;
+}
+
+.explainCard {
+  background: var(--color-surface);
+  border: var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}
+
+.explainHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.explainBadge {
+  align-self: flex-start;
+  background: var(--color-elevated);
+  color: var(--color-mint);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  border: var(--border-subtle);
+  letter-spacing: 1px;
+}
+
+.explainTitle {
+  font-family: var(--font-sora);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.factList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fact {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.factPoint {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-mint);
+  margin-top: 8px;
+}
+
+.factContent {
+  font-family: var(--font-inter);
+  font-size: 15px;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+.factSubject {
+  font-weight: 600;
+}
+
+.highlight {
+  color: var(--color-coral);
+  font-weight: 600;
+}
+
+.contextBox {
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 3px solid var(--color-mint);
+  padding: 16px 20px;
+  font-family: var(--font-inter);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.contextLabel {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-right: 8px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.btnPrimary, .btnSecondary {
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-inter);
+  font-weight: 500;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btnPrimary:hover, .btnSecondary:hover {
+  opacity: 0.9;
+}
+
+.btnPrimary {
+  background: var(--color-mint);
+  color: var(--color-background);
+}
+
+.btnSecondary {
+  background: var(--color-elevated);
+  color: var(--color-text-primary);
+  border: var(--border-subtle);
+}
+
+.emptyDetail {
+  margin: auto;
+  font-family: var(--font-inter);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}

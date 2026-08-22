@@ -1,0 +1,200 @@
+.container {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.leaveHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.employeeName {
+  font-family: var(--font-sora);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: 0.5px;
+}
+
+.badge {
+  background: var(--color-elevated);
+  border: var(--border-subtle);
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-inter);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.dates {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--color-text-primary);
+}
+
+.details {
+  font-family: var(--font-inter);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.impactSimulator {
+  background: var(--color-surface);
+  border: var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sectionTitle {
+  font-family: var(--font-sora);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  letter-spacing: 1px;
+}
+
+.teamCapacity {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.capacityHeader {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-inter);
+  font-size: 14px;
+  color: var(--color-text-primary);
+}
+
+.capacityNumber {
+  font-family: var(--font-mono);
+}
+
+.progressBar {
+  height: 8px;
+  background: var(--color-elevated);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  transition: width 1s ease-in-out;
+}
+
+.impactDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 0;
+  border-top: var(--border-subtle);
+  border-bottom: var(--border-subtle);
+}
+
+.impactText {
+  font-family: var(--font-inter);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.rosterStat {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+.rosterTeam {
+  color: var(--color-text-primary);
+}
+
+.rosterCount {
+  color: var(--color-text-primary);
+}
+
+.overlapAlert {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  color: var(--color-coral);
+  font-family: var(--font-inter);
+  font-size: 14px;
+  background: rgba(255, 128, 102, 0.1);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+}
+
+.recommendationBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.suggestedLabel {
+  font-family: var(--font-inter);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.recommendationText {
+  font-family: var(--font-inter);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.recommendApprove { color: var(--color-mint); }
+.recommendWarn { color: var(--color-yellow); }
+.recommendReject { color: var(--color-coral); }
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.btnPrimary, .btnSecondary, .btnDanger {
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-inter);
+  font-weight: 500;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btnPrimary:hover, .btnSecondary:hover, .btnDanger:hover {
+  opacity: 0.9;
+}
+
+.btnPrimary {
+  background: var(--color-mint);
+  color: var(--color-background);
+}
+
+.btnDanger {
+  background: transparent;
+  border: 1px solid var(--color-coral);
+  color: var(--color-coral);
+}
+
+.btnSecondary {
+  background: var(--color-elevated);
+  color: var(--color-text-primary);
+  border: var(--border-subtle);
+}

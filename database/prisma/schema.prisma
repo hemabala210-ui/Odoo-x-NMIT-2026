@@ -1,0 +1,144 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  // url is provided via PrismaClient constructor or Prisma configuration in v7
+}
+
+model User {
+  id            String          @id @default(uuid())
+  name          String
+  email         String          @unique
+  passwordHash  String
+  role          String          // "ADMIN", "MANAGER", "EMPLOYEE"
+  createdAt     DateTime        @default(now())
+
+  employee      Employee?
+  notifications Notification[]
+  auditLogs     AuditLog[]      // Actions performed by this user
+
+  decidedLeaves LeaveRequest[]  @relation("DecisionMaker")
+  payrollChanges PayrollHistory[] @relation("ChangedBy")
+}
+
+model Employee {
+  id            String          @id @default(uuid())
+  userId        String          @unique
+  user          User            @relation(fields: [userId], references: [id])
+  employeeCode  String          @unique
+  designation   String
+  department    String
+  team          String
+  joinDate      DateTime
+  
+  managerId     String?
+  manager       Employee?       @relation("ManagerToEmployee", fields: [managerId], references: [id])
+  reports       Employee[]      @relation("ManagerToEmployee")
+
+  attendances   Attendance[]
+  leaveRequests LeaveRequest[]  @relation("EmployeeLeave")
+  payrolls      Payroll[]
+  pulseResponses PulseResponse[]
+  anomalyFlags  AnomalyFlag[]
+}
+
+model Attendance {
+  id         String   @id @default(uuid())
+  employeeId String
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  date       DateTime // Stored as a date or start of day
+  checkIn    DateTime?
+  checkOut   DateTime?
+  status     String   // "PRESENT", "ABSENT", "HALF_DAY", "LEAVE"
+}
+
+model LeaveRequest {
+  id             String    @id @default(uuid())
+  employeeId     String
+  employee       Employee  @relation("EmployeeLeave", fields: [employeeId], references: [id])
+  type           String
+  startDate      DateTime
+  endDate        DateTime
+  remarks        String?
+  status         String    // "PENDING", "APPROVED", "REJECTED"
+  
+  decidedById    String?
+  decidedBy      User?     @relation("DecisionMaker", fields: [decidedById], references: [id])
+  decidedAt      DateTime?
+  decisionReason String?
+}
+
+model Payroll {
+  id            String    @id @default(uuid())
+  employeeId    String
+  employee      Employee  @relation(fields: [employeeId], references: [id])
+  month         String    // e.g. "2026-08"
+  basic         Float
+  hra           Float
+  allowances    Float
+  pfDeduction   Float
+  taxDeduction  Float
+  gross         Float
+  net           Float
+  effectiveDate DateTime
+  
+  history       PayrollHistory[]
+}
+
+model PayrollHistory {
+  id            String   @id @default(uuid())
+  payrollId     String
+  payroll       Payroll  @relation(fields: [payrollId], references: [id])
+  fieldChanged  String
+  oldValue      Float
+  newValue      Float
+  
+  changedById   String
+  changedBy     User     @relation("ChangedBy", fields: [changedById], references: [id])
+  changedAt     DateTime @default(now())
+  reason        String
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  type      String
+  message   String
+  readBool  Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model AuditLog {
+  id          String   @id @default(uuid())
+  actorId     String
+  actor       User     @relation(fields: [actorId], references: [id])
+  action      String
+  targetType  String   // e.g. "LEAVE_REQUEST", "PAYROLL"
+  targetId    String
+  reason      String
+  createdAt   DateTime @default(now())
+}
+
+model PulseResponse {
+  id         String   @id @default(uuid())
+  employeeId String
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  date       DateTime
+  mood       String   // "GREAT", "GOOD", "OKAY", "DIFFICULT", "VERY_DIFFICULT"
+}
+
+model AnomalyFlag {
+  id            String   @id @default(uuid())
+  employeeId    String
+  employee      Employee @relation(fields: [employeeId], references: [id])
+  type          String   // e.g. "LATE_ARRIVAL"
+  detectedAt    DateTime @default(now())
+  expectedValue String?
+  actualValue   String?
+  deviation     String?
+  confidence    Float?
+  resolvedBool  Boolean  @default(false)
+}
