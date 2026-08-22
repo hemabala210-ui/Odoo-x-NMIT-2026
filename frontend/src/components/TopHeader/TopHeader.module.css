@@ -34,6 +34,7 @@
   height: 16px;
   color: var(--text-tertiary);
   margin-right: 12px;
+  flex-shrink: 0;
 }
 
 .searchInput {
@@ -82,6 +83,7 @@
 .iconSvg {
   width: 22px;
   height: 22px;
+  flex-shrink: 0;
 }
 
 .iconBtn:hover {
@@ -125,6 +127,7 @@
   justify-content: center;
   font-weight: 600;
   font-size: 14px;
+  flex-shrink: 0;
 }
 
 .profileInfo {
