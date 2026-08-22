@@ -90,33 +90,39 @@ export default function LeaveTable({ leaves }: { leaves: LeaveData[] }) {
   };
 
   return (
-    <div className={styles.pipelineGrid}>
+    <div className={styles.sectionsContainer}>
       
-      <div className={styles.pipelineColumn}>
-        <div className={styles.colHeader}>
-          <span className={styles.colTitle}>PENDING REVIEW</span>
+      <div className={styles.statusSection}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>PENDING REVIEW</h2>
           <span className={styles.colCount}>{pending.length}</span>
         </div>
         {pending.length === 0 && <div className={styles.emptyState}>No pending requests</div>}
-        {pending.map(l => renderCard(l, true))}
+        <div className={styles.cardsGrid}>
+          {pending.map(l => renderCard(l, true))}
+        </div>
       </div>
 
-      <div className={styles.pipelineColumn}>
-        <div className={styles.colHeader}>
-          <span className={styles.colTitle}>APPROVED</span>
+      <div className={styles.statusSection}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>APPROVED</h2>
           <span className={styles.colCount}>{approved.length}</span>
         </div>
         {approved.length === 0 && <div className={styles.emptyState}>No approved requests</div>}
-        {approved.map(l => renderCard(l, false))}
+        <div className={styles.cardsGrid}>
+          {approved.map(l => renderCard(l, false))}
+        </div>
       </div>
 
-      <div className={styles.pipelineColumn}>
-        <div className={styles.colHeader}>
-          <span className={styles.colTitle}>REJECTED</span>
+      <div className={styles.statusSection}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>REJECTED</h2>
           <span className={styles.colCount}>{rejected.length}</span>
         </div>
         {rejected.length === 0 && <div className={styles.emptyState}>No rejected requests</div>}
-        {rejected.map(l => renderCard(l, false))}
+        <div className={styles.cardsGrid}>
+          {rejected.map(l => renderCard(l, false))}
+        </div>
       </div>
 
     </div>
