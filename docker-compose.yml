@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    container_name: dayflow_backend
+    ports:
+      - "4000:4000"
+    env_file:
+      - .env
+    command: npm run dev:backend
+    volumes:
+      - ./backend/src:/app/backend/src
+      - /app/node_modules
+    networks:
+      - dayflow_network
+
+  frontend:
+    build: .
+    container_name: dayflow_frontend
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:4000/api
+    command: npm run dev:frontend
+    volumes:
+      - ./frontend/src:/app/frontend/src
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - dayflow_network
+
+networks:
+  dayflow_network:
+    driver: bridge
