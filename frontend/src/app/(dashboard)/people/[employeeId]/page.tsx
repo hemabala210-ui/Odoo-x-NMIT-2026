@@ -26,7 +26,7 @@ export default async function EmployeeDossier({
       user: true,
       attendances: { orderBy: { date: "desc" }, take: 14 },
       leaveRequests: { orderBy: { startDate: "desc" } },
-      payrolls: { include: { history: true }, orderBy: { createdAt: "desc" } },
+      payrolls: { include: { history: true }, orderBy: { effectiveDate: "desc" } },
     },
   });
 
@@ -62,7 +62,7 @@ export default async function EmployeeDossier({
       date: leave.startDate,
       type: "LEAVE",
       title: `Leave request: ${leave.status}`,
-      description: `"${leave.remarks || leave.type}" for ${leave.durationDays} days`,
+      description: `"${leave.remarks || leave.type}"`,
       status: leave.status,
       markerClass: `${styles.eventMarker} ${styles.markerLeave}`,
     });
@@ -71,10 +71,10 @@ export default async function EmployeeDossier({
   employee.payrolls.forEach((payroll) => {
     events.push({
       id: payroll.id,
-      date: payroll.createdAt,
+      date: payroll.effectiveDate,
       type: "PAYROLL",
       title: `Payroll Generated`,
-      description: `Net Payable: ₹${payroll.netSalary.toLocaleString('en-IN')}`,
+      description: `Net Payable: ₹${payroll.net.toLocaleString('en-IN')}`,
       markerClass: `${styles.eventMarker} ${styles.markerPayroll}`,
     });
   });
