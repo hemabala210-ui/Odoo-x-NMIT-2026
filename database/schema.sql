@@ -169,3 +169,38 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 CREATE OR REPLACE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
+
+-- ==========================================
+-- ROW LEVEL SECURITY (RLS) POLICIES
+-- ==========================================
+
+-- Enable RLS on all tables
+ALTER TABLE "User" ENABLE ROW LEVEL SECURITY;
+ALTER TABLE "Employee" ENABLE ROW LEVEL SECURITY;
+ALTER TABLE "Attendance" ENABLE ROW LEVEL SECURITY;
+ALTER TABLE "LeaveRequest" ENABLE ROW LEVEL SECURITY;
+ALTER TABLE "Payroll" ENABLE ROW LEVEL SECURITY;
+ALTER TABLE "PayrollHistory" ENABLE ROW LEVEL SECURITY;
+ALTER TABLE "Notification" ENABLE ROW LEVEL SECURITY;
+ALTER TABLE "AuditLog" ENABLE ROW LEVEL SECURITY;
+ALTER TABLE "PulseResponse" ENABLE ROW LEVEL SECURITY;
+ALTER TABLE "AnomalyFlag" ENABLE ROW LEVEL SECURITY;
+
+-- Baseline Policy: Authenticated users can read all data
+-- (Service Role key bypasses these for backend writes)
+
+CREATE POLICY "Enable read access for authenticated users on User" ON "User" FOR SELECT TO authenticated USING (true);
+CREATE POLICY "Enable read access for authenticated users on Employee" ON "Employee" FOR SELECT TO authenticated USING (true);
+CREATE POLICY "Enable read access for authenticated users on Attendance" ON "Attendance" FOR SELECT TO authenticated USING (true);
+CREATE POLICY "Enable read access for authenticated users on LeaveRequest" ON "LeaveRequest" FOR SELECT TO authenticated USING (true);
+CREATE POLICY "Enable read access for authenticated users on Payroll" ON "Payroll" FOR SELECT TO authenticated USING (true);
+CREATE POLICY "Enable read access for authenticated users on PayrollHistory" ON "PayrollHistory" FOR SELECT TO authenticated USING (true);
+CREATE POLICY "Enable read access for authenticated users on Notification" ON "Notification" FOR SELECT TO authenticated USING (true);
+CREATE POLICY "Enable read access for authenticated users on AuditLog" ON "AuditLog" FOR SELECT TO authenticated USING (true);
+CREATE POLICY "Enable read access for authenticated users on PulseResponse" ON "PulseResponse" FOR SELECT TO authenticated USING (true);
+CREATE POLICY "Enable read access for authenticated users on AnomalyFlag" ON "AnomalyFlag" FOR SELECT TO authenticated USING (true);
+
+-- Allow users to insert their own records for specific tables
+CREATE POLICY "Enable insert for authenticated users on Attendance" ON "Attendance" FOR INSERT TO authenticated WITH CHECK (true);
+CREATE POLICY "Enable insert for authenticated users on LeaveRequest" ON "LeaveRequest" FOR INSERT TO authenticated WITH CHECK (true);
+CREATE POLICY "Enable insert for authenticated users on PulseResponse" ON "PulseResponse" FOR INSERT TO authenticated WITH CHECK (true);
