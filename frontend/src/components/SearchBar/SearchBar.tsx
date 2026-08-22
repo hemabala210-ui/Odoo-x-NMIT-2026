@@ -22,9 +22,12 @@ export default function SearchBar({ placeholder = "Search..." }: { placeholder?:
         params.delete("q");
       }
       
-      startTransition(() => {
-        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-      });
+      const newQuery = params.toString();
+      if (newQuery !== searchParams.toString()) {
+        startTransition(() => {
+          router.replace(`${pathname}?${newQuery}`, { scroll: false });
+        });
+      }
     }, 300); // 300ms debounce
 
     return () => clearTimeout(handler);
