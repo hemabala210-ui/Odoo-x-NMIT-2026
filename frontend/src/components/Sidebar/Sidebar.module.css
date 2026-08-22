@@ -180,3 +180,44 @@
   margin-left: auto;
   color: var(--text-tertiary);
 }
+
+.bottomArea {
+  padding: 24px 16px;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--surface-base);
+}
+
+.quickActionsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.quickBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quickBtn:hover {
+  background: var(--accent-glow);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.quickBtn :global(svg) {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
