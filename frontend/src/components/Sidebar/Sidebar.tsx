@@ -72,7 +72,7 @@ export default function Sidebar() {
           <button className={styles.navLink}>
             <span className={`${styles.navIcon} ${styles.iconLeave}`}>⊕</span> Apply Leave
           </button>
-          <Link href="/payroll/latest" className={styles.navLink}>
+          <Link href="/payroll" className={styles.navLink}>
             <span className={`${styles.navIcon} ${styles.iconPayslip}`}>📄</span> View Payslip
           </Link>
           <Link href="/people" className={styles.navLink}>

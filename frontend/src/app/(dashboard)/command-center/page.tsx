@@ -58,7 +58,7 @@ export default async function CommandCenter() {
       type: 'LEAVE',
       title: 'Leave Approval',
       desc: `${l.employee.user.name} • ${l.type}`,
-      time: new Date(l.createdAt),
+      time: new Date(l.startDate),
       link: '/leave',
       iconClass: styles.aiIconLeave
     }))
