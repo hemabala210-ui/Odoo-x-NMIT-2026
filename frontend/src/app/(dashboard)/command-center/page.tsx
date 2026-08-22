@@ -52,7 +52,7 @@ export default async function CommandCenter() {
     }))
   ].sort((a, b) => b.time.getTime() - a.time.getTime()).slice(0, 6);
 
-  // Deterministic DAYFLOW ANALYSIS
+  // AI DAYFLOW ANALYSIS
   const anomalyCount = anomalies.length;
   let statement = "Organization operating within normal parameters.";
   let why = "No significant deviations detected.";
@@ -60,17 +60,56 @@ export default async function CommandCenter() {
   let recAction = "Continue standard operations.";
   let signalClass = styles.signalInfo;
 
-  if (anomalyCount > 3) {
-    statement = "Elevated anomaly detection rate across departments.";
-    why = `${anomalyCount} unresolved attendance deviations.`;
-    impact = "Moderate operational drag";
-    recAction = "Review and clear pending anomalies immediately.";
-    signalClass = styles.signalWarning;
-  } else if (pendingLeaves.length > 5) {
-    statement = "Leave approval backlog accumulating.";
-    why = `${pendingLeaves.length} pending time-off requests.`;
-    impact = "Scheduling uncertainty";
-    recAction = "Process leave pipeline.";
+  if (process.env.OPENROUTER_API_KEY) {
+    try {
+      const aiResponse = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          model: "openai/gpt-4o-mini",
+          messages: [
+            {
+              role: "system",
+              content: "You are the Dayflow Human Operations AI. Given the following organizational metrics, provide a concise analysis in JSON format with exactly four keys: 'statement' (max 8 words, a bold status summary), 'why' (max 10 words, the primary reason), 'impact' (max 5 words, severity level), and 'recAction' (max 8 words, recommended action)."
+            },
+            {
+              role: "user",
+              content: `Metrics: Total Headcount=${totalEmployees}, Attendance Health=${attendanceHealth}%, Pending Leaves=${pendingLeaves.length}, Active Anomalies=${anomalyCount}.`
+            }
+          ],
+          response_format: { type: "json_object" }
+        }),
+        next: { revalidate: 60 } // cache for 60 seconds
+      });
+      
+      const data = await aiResponse.json();
+      if (data.choices && data.choices[0]?.message?.content) {
+        const aiJson = JSON.parse(data.choices[0].message.content);
+        statement = aiJson.statement || statement;
+        why = aiJson.why || why;
+        impact = aiJson.impact || impact;
+        recAction = aiJson.recAction || recAction;
+      }
+    } catch (e) {
+      console.error("AI Analysis failed:", e);
+    }
+  } else {
+    // Fallback deterministic logic
+    if (anomalyCount > 3) {
+      statement = "Elevated anomaly detection rate across departments.";
+      why = `${anomalyCount} unresolved attendance deviations.`;
+      impact = "Moderate operational drag";
+      recAction = "Review and clear pending anomalies immediately.";
+      signalClass = styles.signalWarning;
+    } else if (pendingLeaves.length > 5) {
+      statement = "Leave approval backlog accumulating.";
+      why = `${pendingLeaves.length} pending time-off requests.`;
+      impact = "Scheduling uncertainty";
+      recAction = "Process leave pipeline.";
+    }
   }
 
   return (
