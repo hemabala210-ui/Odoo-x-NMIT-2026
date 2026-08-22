@@ -1,32 +1,32 @@
 :root {
   /* Dayflow Spatial Operations - Dark Theme Tokens */
-  --bg-color: #0A0A0A;
-  --surface-base: #121212;
-  --surface-raised: #1A1A1A;
-  --surface-overlay: rgba(255, 255, 255, 0.03);
+  --bg-color: #000000;
+  --surface-base: #0a0a0a;
+  --surface-raised: #141414;
+  --surface-overlay: rgba(255, 255, 255, 0.05);
   
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-focus: rgba(255, 255, 255, 0.2);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-focus: rgba(255, 255, 255, 0.15);
 
-  --text-primary: #EDEDED;
-  --text-secondary: #8A8A8A;
-  --text-tertiary: #5C5C5C;
+  --text-primary: #FAFAFA;
+  --text-secondary: #A1A1AA;
+  --text-tertiary: #71717A;
 
   /* Accents */
-  --accent-primary: #2d5bff;
-  --accent-glow: rgba(45, 91, 255, 0.2);
+  --accent-primary: #3b82f6;
+  --accent-glow: rgba(59, 130, 246, 0.15);
   --accent-secondary: #00F0FF;
 
   /* Semantics */
-  --status-success: #00FF9D;
-  --status-warning: #FFB800;
-  --status-critical: #FF3366;
-  --status-info: #00F0FF;
+  --status-success: #10b981;
+  --status-warning: #f59e0b;
+  --status-critical: #ef4444;
+  --status-info: #0ea5e9;
 
   /* Typography System */
-  --font-display: var(--font-sora), sans-serif;
-  --font-body: var(--font-inter), sans-serif;
-  --font-mono: var(--font-mono), monospace;
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 * {
@@ -49,7 +49,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 500;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 a {
@@ -61,14 +61,16 @@ a {
 .spatial-panel {
   background: var(--surface-base);
   border: 1px solid var(--border-subtle);
-  border-radius: 4px; /* minimal radius */
+  border-radius: 12px;
   color: var(--text-primary);
+  box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.5);
 }
 
 .spatial-panel-raised {
   background: var(--surface-raised);
   border: 1px solid var(--border-subtle);
-  border-radius: 4px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.5);
 }
 
 /* FLOW SIGNALS */

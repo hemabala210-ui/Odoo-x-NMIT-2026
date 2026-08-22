@@ -3,6 +3,16 @@ import styles from "./page.module.css";
 import Link from "next/link";
 import LiveClock from "./LiveClock";
 
+const Icons = {
+  Users: () => <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={styles.iconSvg}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>,
+  CheckCircle: () => <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={styles.iconSvg}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
+  Clock: () => <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={styles.iconSvg}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
+  Calendar: () => <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={styles.iconSvg}><path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" /></svg>,
+  NoSymbol: () => <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={styles.iconSvg}><path strokeLinecap="round" strokeLinejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg>,
+  Warning: () => <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={styles.iconSvg}><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>,
+  Mail: () => <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={styles.iconSvg}><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>,
+};
+
 export default async function CommandCenter() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -106,9 +116,19 @@ export default async function CommandCenter() {
 
   // SVG SPARKLINE GENERATOR (mock data for visual)
   const renderSparkline = (color: string) => {
-    const pts = Array.from({length: 10}, (_, i) => `${i * 8},${30 - (Math.random() * 20 + 5)}`).join(" ");
+    const rawPts = Array.from({length: 10}, (_, i) => `${i * 8},${30 - (Math.random() * 20 + 5)}`);
+    const pts = rawPts.join(" ");
+    const polyPts = `0,30 ${pts} 72,30`;
+    
     return (
       <svg className={styles.sparkline} viewBox="0 0 80 30">
+        <defs>
+          <linearGradient id={`spark-${color.replace(/[^a-zA-Z0-9]/g, '')}`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={color} stopOpacity="0.4" />
+            <stop offset="100%" stopColor={color} stopOpacity="0.0" />
+          </linearGradient>
+        </defs>
+        <polygon points={polyPts} fill={`url(#spark-${color.replace(/[^a-zA-Z0-9]/g, '')})`} />
         <polyline points={pts} stroke={color} />
       </svg>
     );
@@ -131,7 +151,7 @@ export default async function CommandCenter() {
       <div className={styles.topMetricsGrid}>
         <div className={`spatial-panel ${styles.metricCard}`}>
           <div className={styles.metricHeader}>
-            <div className={`${styles.metricIcon} ${styles.metricIconTotal}`}>👥</div>
+            <div className={`${styles.metricIcon} ${styles.metricIconTotal}`}><Icons.Users /></div>
             <span className={styles.metricLabel}>TOTAL EMPLOYEES</span>
           </div>
           <div className={styles.metricValue}>{totalEmployees}</div>
@@ -141,37 +161,37 @@ export default async function CommandCenter() {
 
         <div className={`spatial-panel ${styles.metricCard}`}>
           <div className={styles.metricHeader}>
-            <div className={`${styles.metricIcon} ${styles.metricIconPresent}`}>✅</div>
+            <div className={`${styles.metricIcon} ${styles.metricIconPresent}`}><Icons.CheckCircle /></div>
             <span className={styles.metricLabel}>PRESENT TODAY</span>
           </div>
           <div className={styles.metricValue}>{presentToday}</div>
           <div className={styles.metricSub}>{healthIndex}%</div>
-          {renderSparkline("#4DA3FF")}
+          {renderSparkline("var(--status-info)")}
         </div>
 
         <div className={`spatial-panel ${styles.metricCard}`}>
           <div className={styles.metricHeader}>
-            <div className={`${styles.metricIcon} ${styles.metricIconLate}`}>⏱</div>
+            <div className={`${styles.metricIcon} ${styles.metricIconLate}`}><Icons.Clock /></div>
             <span className={styles.metricLabel}>LATE ARRIVALS</span>
           </div>
           <div className={styles.metricValue}>{lateArrivals < 10 ? `0${lateArrivals}` : lateArrivals}</div>
           <div className={styles.metricSub}>5.5%</div>
-          {renderSparkline("#FFAA00")}
+          {renderSparkline("var(--status-warning)")}
         </div>
 
         <div className={`spatial-panel ${styles.metricCard}`}>
           <div className={styles.metricHeader}>
-            <div className={`${styles.metricIcon} ${styles.metricIconLeave}`}>🏖</div>
+            <div className={`${styles.metricIcon} ${styles.metricIconLeave}`}><Icons.Calendar /></div>
             <span className={styles.metricLabel}>ON LEAVE</span>
           </div>
           <div className={styles.metricValue}>{onLeave < 10 ? `0${onLeave}` : onLeave}</div>
           <div className={styles.metricSub}>2.3%</div>
-          {renderSparkline("#B070FF")}
+          {renderSparkline("#a855f7")}
         </div>
 
         <div className={`spatial-panel ${styles.metricCard}`}>
           <div className={styles.metricHeader}>
-            <div className={`${styles.metricIcon} ${styles.metricIconAbsent}`}>🚫</div>
+            <div className={`${styles.metricIcon} ${styles.metricIconAbsent}`}><Icons.NoSymbol /></div>
             <span className={styles.metricLabel}>ABSENT</span>
           </div>
           <div className={styles.metricValue}>{absent < 10 ? `0${absent}` : absent}</div>
@@ -242,9 +262,17 @@ export default async function CommandCenter() {
           </div>
           <div className={styles.chartContainer}>
             <svg className={styles.chartSvg} viewBox="0 0 400 160" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="var(--status-success)" stopOpacity="0.3" />
+                  <stop offset="100%" stopColor="var(--status-success)" stopOpacity="0.0" />
+                </linearGradient>
+              </defs>
               <line x1="0" y1="40" x2="400" y2="40" className={styles.chartGrid} />
               <line x1="0" y1="80" x2="400" y2="80" className={styles.chartGrid} />
               <line x1="0" y1="120" x2="400" y2="120" className={styles.chartGrid} />
+              
+              <polygon points="0,160 0,60 50,80 100,50 150,90 200,40 250,70 300,30 350,50 400,20 400,160" fill="url(#chartFill)" />
               <polyline points="0,60 50,80 100,50 150,90 200,40 250,70 300,30 350,50 400,20" className={styles.chartLine} />
               <circle cx="250" cy="70" r="4" className={styles.chartPoint} />
             </svg>
@@ -267,7 +295,7 @@ export default async function CommandCenter() {
             {actionItems.map(act => (
               <div key={act.id} className={`${styles.actionItem} ${act.type === 'ANOMALY' ? styles.actionAnomaly : styles.actionLeave}`}>
                 <div className={`${styles.aiIcon} ${act.iconClass}`}>
-                  {act.type === 'ANOMALY' ? '⚠' : '✉'}
+                  {act.type === 'ANOMALY' ? <Icons.Warning /> : <Icons.Mail />}
                 </div>
                 <div className={styles.aiContent}>
                   <div className={styles.aiTitle}>{act.title}</div>
