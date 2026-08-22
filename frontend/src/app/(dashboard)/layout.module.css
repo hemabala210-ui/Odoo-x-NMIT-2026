@@ -1,13 +1,19 @@
-.dashboardLayout {
+.appShell {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: var(--bg-color);
+}
+
+.mainWrapper {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .mainContent {
   flex: 1;
-  padding: 40px 48px;
-  max-width: 1400px;
-  margin: 0 auto;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
 }

@@ -1,4 +1,5 @@
-import TopNav from "@/components/TopNav/TopNav";
+import Sidebar from "@/components/Sidebar/Sidebar";
+import TopHeader from "@/components/TopHeader/TopHeader";
 import styles from "./layout.module.css";
 
 export default function DashboardLayout({
@@ -7,9 +8,12 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={styles.dashboardLayout}>
-      <TopNav />
-      <main className={styles.mainContent}>{children}</main>
+    <div className={styles.appShell}>
+      <Sidebar />
+      <div className={styles.mainWrapper}>
+        <TopHeader />
+        <main className={styles.mainContent}>{children}</main>
+      </div>
     </div>
   );
 }
